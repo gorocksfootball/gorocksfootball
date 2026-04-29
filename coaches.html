@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youth Coaches Hub · Westfield Shamrocks Football</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1a5c2e;
+      --green-mid: #1e6b34;
+      --green-light: #2a8040;
+      --gold: #b8982a;
+      --gold-light: #d4af37;
+      --gold-bright: #f0c93a;
+      --black: #0a0a0a;
+      --off-white: #f4f1ea;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--off-white);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .nav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      color: var(--gold-bright);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-bright); }
+
+    /* PAGE HEADER */
+    .page-header {
+      position: relative;
+      padding-top: 64px;
+      min-height: 360px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/huddle.png');
+      background-size: cover;
+      background-position: center 25%;
+      filter: brightness(0.3) saturate(0.7);
+    }
+
+    .page-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,92,46,0.85) 0%, transparent 60%);
+    }
+
+    .page-header-content {
+      position: relative;
+      padding: 3rem 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 2px;
+      background: var(--gold-bright);
+    }
+
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* WELCOME BOX */
+    .welcome-box {
+      border-left: 4px solid var(--green-light);
+      padding: 1.5rem 2rem;
+      background: rgba(26,92,46,0.12);
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .welcome-box p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .welcome-box strong {
+      color: var(--gold-bright);
+    }
+
+    /* SECTION HEADER */
+    .content-section {
+      margin-bottom: 4rem;
+      animation: fadeUp 0.8s 0.25s ease both;
+    }
+
+    .content-section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .content-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* RESOURCE GRID */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .resource-card {
+      background: #161616;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .resource-card:hover {
+      background: #1e1e1e;
+      border-color: var(--green-light);
+      transform: translateY(-2px);
+    }
+
+    .resource-card.coming-soon {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .resource-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: rgba(26,92,46,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .resource-info { flex: 1; }
+
+    .resource-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .resource-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+
+    .resource-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    .badge-pdf { background: rgba(220,80,60,0.2); color: #e87a6a; }
+    .badge-link { background: rgba(26,92,46,0.3); color: #6ddc8a; }
+    .badge-soon { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); }
+
+    /* CONTACT SECTION */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(26,92,46,0.2), rgba(184,152,42,0.1));
+      border: 1px solid rgba(184,152,42,0.25);
+      padding: 2.5rem;
+      margin-top: 4rem;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+
+    .contact-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--gold-bright);
+      text-decoration: none;
+    }
+
+    .contact-email:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background: #080808;
+      border-top: 2px solid var(--gold);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      color: var(--gold-bright);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold-bright); }
+
+    .footer-copy {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.15);
+    }
+
+    @media (max-width: 600px) {
+      .resource-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">☘ ROCKS</a>
+    <ul class="nav-links">
+      <li><a href="coaches.html" class="active">Coaches</a></li>
+      <li><a href="alumni.html">Alumni</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+      <p class="page-eyebrow">Westfield Shamrocks Football</p>
+      <h1 class="page-title">Youth Coaches<br>Hub</h1>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <div class="welcome-box">
+      <p>Welcome, coach. Everything you need to run the Westfield youth football program is right here. Download your playbooks, access practice resources, and stay connected with the program. Questions? <strong>Reach out below.</strong></p>
+    </div>
+
+    <!-- PLAYBOOKS -->
+    <div class="content-section">
+      <p class="content-section-label">Downloads</p>
+      <h2 class="content-section-title">Playbooks</h2>
+      <div class="resource-grid">
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">📋</div>
+          <div class="resource-info">
+            <div class="resource-name">Offense Playbook</div>
+            <div class="resource-desc">Full offensive scheme, formations, and play diagrams.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">🛡️</div>
+          <div class="resource-info">
+            <div class="resource-name">Defense Playbook</div>
+            <div class="resource-desc">Defensive alignments, assignments, and coverages.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">⚡</div>
+          <div class="resource-info">
+            <div class="resource-name">Special Teams</div>
+            <div class="resource-desc">Kickoff, punt, and field goal unit assignments.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- PRACTICE RESOURCES -->
+    <div class="content-section">
+      <p class="content-section-label">Resources</p>
+      <h2 class="content-section-title">Practice & Program</h2>
+      <div class="resource-grid">
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">📅</div>
+          <div class="resource-info">
+            <div class="resource-name">Practice Schedule Template</div>
+            <div class="resource-desc">Weekly practice planning guide and period breakdown.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">🏃</div>
+          <div class="resource-info">
+            <div class="resource-name">Drill Library</div>
+            <div class="resource-desc">Position-specific drills for every level of your program.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">📊</div>
+          <div class="resource-info">
+            <div class="resource-name">Depth Chart Template</div>
+            <div class="resource-desc">Printable depth chart to organize your roster.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="resource-card coming-soon">
+          <div class="resource-icon">🎥</div>
+          <div class="resource-info">
+            <div class="resource-name">Film & Hudl Access</div>
+            <div class="resource-desc">Links to film breakdown and team Hudl account.</div>
+            <span class="resource-badge badge-soon">Coming Soon</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-box">
+      <h3>Need Something?</h3>
+      <p>Can't find what you're looking for, or have a question about the program? Get in touch with the Shamrocks football staff directly.</p>
+      <a href="mailto:gorocksfootball@gmail.com" class="contact-email">
+        ✉ gorocksfootball@gmail.com
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">☘ Westfield Shamrocks</div>
+    <p class="footer-sub">Westfield High School Football · Westfield, Indiana</p>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="coaches.html">Coaches Hub</a></li>
+      <li><a href="alumni.html">Alumni</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Westfield Shamrocks Football. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
